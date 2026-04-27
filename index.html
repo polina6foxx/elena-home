@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elena Home — Недвижимость и дизайн интерьера</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="images/logoblack.png" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       HEADER
+  ══════════════════════════════════════ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#" class="logo">
+        <img src="images/onlylogo.png" alt="Elena Home" class="logo__img" id="logoImg" />
+        <span>ELENA HOME</span>
+      </a>
+      <nav class="nav">
+        <a href="#portfolio" class="nav__link">Проекты</a>
+        <a href="#services" class="nav__link">Услуги</a>
+        <a href="#about" class="nav__link">О нас</a>
+        <a href="#contacts" class="nav__link">Контакты</a>
+      </nav>
+      <button class="btn btn--dark" onclick="openModal()">Оставить заявку</button>
+      <button class="burger" id="burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#portfolio" class="nav__link" onclick="closeMobileNav()">Проекты</a>
+    <a href="#services" class="nav__link" onclick="closeMobileNav()">Услуги</a>
+    <a href="#about" class="nav__link" onclick="closeMobileNav()">О нас</a>
+    <a href="#contacts" class="nav__link" onclick="closeMobileNav()">Контакты</a>
+    <button class="btn btn--gold w-full" onclick="openModal(); closeMobileNav()">Оставить заявку</button>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="container hero__split">
+
+      <div class="hero__left">
+        <h1 class="hero__title">Ваша недвижимость —<br /><em>наша ответственность</em></h1>
+        <p class="hero__subtitle">
+          Берём на себя весь цикл: от поиска объекта до стабильного денежного потока
+        </p>
+        <div class="hero__actions">
+          <button class="btn btn--gold btn--lg" onclick="openModal()">Рассчитать прибыльность</button>
+          <a href="#portfolio" class="btn btn--ghost btn--lg">Смотреть проекты</a>
+        </div>
+      </div>
+
+      <div class="hero__slider">
+        <div class="hero__slides">
+          <img class="hero__slide hero__slide--active" src="images/photo1.png" alt="Проект 1" />
+          <img class="hero__slide" src="images/photo2.png" alt="Проект 2" />
+          <img class="hero__slide" src="images/photo3.png" alt="Проект 3" />
+        </div>
+        <div class="hero__dots">
+          <button class="hero__dot hero__dot--active" data-index="0" aria-label="Слайд 1"></button>
+          <button class="hero__dot" data-index="1" aria-label="Слайд 2"></button>
+          <button class="hero__dot" data-index="2" aria-label="Слайд 3"></button>
+        </div>
+      </div>
+
+    </div>
+    <div class="hero__scroll">
+      <span></span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       INTRO STRIP
+  ══════════════════════════════════════ -->
+  <section class="intro-strip">
+    <div class="container intro-strip__inner">
+      <div class="intro-strip__item">
+        <span class="intro-strip__num">6</span>
+        <span class="intro-strip__label">ключевых направлений<br />в единой системе</span>
+      </div>
+      <div class="intro-strip__divider"></div>
+      <div class="intro-strip__item">
+        <span class="intro-strip__num">150+</span>
+        <span class="intro-strip__label">реализованных<br />проектов</span>
+      </div>
+      <div class="intro-strip__divider"></div>
+      <div class="intro-strip__item">
+        <span class="intro-strip__num">8 лет</span>
+        <span class="intro-strip__label">на рынке<br />недвижимости</span>
+      </div>
+      <div class="intro-strip__divider"></div>
+      <div class="intro-strip__item">
+        <span class="intro-strip__num">97%</span>
+        <span class="intro-strip__label">клиентов<br />возвращаются</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════ -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Как мы создаём доход</p>
+        <h2 class="section-title">Полный цикл: поиск, ремонт,<br /><em>упаковка и управление объектом</em></h2>
+        <p class="section-desc">
+          Мы создаём и управляем объектами, которые приносят деньги
+        </p>
+      </div>
+
+      <div class="services__accordion">
+
+        <div class="accordion-item">
+          <button class="accordion-item__header" onclick="toggleAccordion(this)">
+            <div class="accordion-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <path d="M3 9.5L12 3l9 6.5V21H3V9.5z"/>
+                <rect x="9" y="14" width="6" height="7"/>
+              </svg>
+            </div>
+            <span class="accordion-item__title">Подбор недвижимости</span>
+            <span class="accordion-item__toggle">+</span>
+          </button>
+          <div class="accordion-item__body">
+            <p>Находим объекты с реальным потенциалом — для жизни, инвестиций или перепродажи. Проверяем юридическую чистоту, оцениваем ликвидность и ведём переговоры, чтобы вы купили правильно и без рисков</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-item__header" onclick="toggleAccordion(this)">
+            <div class="accordion-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <span class="accordion-item__title">Ремонт под ключ</span>
+            <span class="accordion-item__toggle">+</span>
+          </button>
+          <div class="accordion-item__body">
+            <p>Берём на себя весь процесс: от концепции до финальной сдачи. Работаем по понятной смете, контролируем сроки и качество, чтобы вы получили готовый объект без стресса и переделок</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-item__header" onclick="toggleAccordion(this)">
+            <div class="accordion-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+                <polyline points="16 7 22 7 22 13"/>
+              </svg>
+            </div>
+            <span class="accordion-item__title">Флиппинг</span>
+            <span class="accordion-item__toggle">+</span>
+          </button>
+          <div class="accordion-item__body">
+            <p>Флиппинг — это стратегия заработка на недвижимости, при которой объект покупается по выгодной цене, затем улучшается (чаще всего за счёт ремонта и повышения его привлекательности) и перепродаётся дороже.</p>
+            <p>От поиска перспективного объекта до его финальной продажи: анализируем рынок, выбираем недвижимость с потенциалом роста, организуем ремонт с учётом спроса покупателей и выводим объект на продажу по максимально выгодной цене.</p>
+            <p>Вам не нужно разбираться в деталях или тратить время на управление — вы получаете готовый инвестиционный результат с прогнозируемой доходностью.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-item__header" onclick="toggleAccordion(this)">
+            <div class="accordion-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </div>
+            <span class="accordion-item__title">Хоум-стейджинг</span>
+            <span class="accordion-item__toggle">+</span>
+          </button>
+          <div class="accordion-item__body">
+            <p>Хоум-стейджинг — это профессиональная подготовка квартиры к продаже или сдаче в аренду.</p>
+            <p>Воплощаем ощущение «того самого дома», в который хочется заехать сразу: продумываем расстановку мебели, добавляем текстиль, освещение, декор, живые акценты и детали, которые формируют эмоцию у покупателя.</p>
+            <p>Задача хоум-стейджинга — не просто украсить квартиру, а повысить её привлекательность, ускорить продажу и увеличить итоговую стоимость за счёт правильной подачи пространства.</p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-item__header" onclick="toggleAccordion(this)">
+            <div class="accordion-item__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+            </div>
+            <span class="accordion-item__title">Управление арендой</span>
+            <span class="accordion-item__toggle">+</span>
+          </button>
+          <div class="accordion-item__body">
+            <p>Управление арендой — это полный цикл обслуживания вашей недвижимости при посуточной сдаче.</p>
+            <p>Операционное управление: размещаем объект на популярных площадках, обрабатываем бронирования, организуем заезды и выезды гостей, контролируем клининг и следим за состоянием квартиры.</p>
+            <p>Ваша задача — только владеть объектом. Мы обеспечиваем стабильную загрузку и сервис, а вы получаете регулярный доход без необходимости заниматься ежедневными вопросами.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       APPROACH
+  ══════════════════════════════════════ -->
+  <section class="approach section section--alt" id="about">
+    <div class="container approach__inner">
+
+      <div class="approach__photo-wrap">
+        <img src="images/elenaphoto.jpeg" alt="Елена" class="approach__photo" />
+      </div>
+
+      <div class="approach__text">
+        <h2 class="section-title">От идеи до готового<br /><em>объекта — под ключ</em></h2>
+
+        <p class="approach__desc approach__desc--lead">
+          Мы создаём объекты, которые выглядят дорого и работают как инвестиция
+        </p>
+        <p class="approach__desc">
+          От подбора квартиры до готового результата. Вам не нужно разбираться в ремонте, контролировать рабочих или думать, как лучше продать или сдать объект
+        </p>
+
+        <div class="approach__outcomes">
+          <p class="approach__if-title">Делаем так, чтобы недвижимость:</p>
+          <ul class="approach__list">
+            <li>выглядела современно и привлекательно</li>
+            <li>быстрее продавалась или сдавалась</li>
+            <li>приносила стабильный доход</li>
+          </ul>
+        </div>
+
+        <p class="approach__closing">
+          Если у вас есть задача — купить, отремонтировать, подготовить к продаже или аренде — мы доведём её до результата
+        </p>
+
+        <button class="btn btn--gold" onclick="openModal()">Обсудить проект</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       PORTFOLIO
+  ══════════════════════════════════════ -->
+  <section class="portfolio section" id="portfolio">
+    <div class="portfolio__header container">
+      <h2 class="section-title">Реализованные<br /><em>проекты</em></h2>
+    </div>
+
+    <div class="portfolio__carousel-wrap">
+      <div class="portfolio__carousel" id="portfolioCarousel">
+
+        <div class="pcard" onclick="openProject(0)">
+          <div class="pcard__bg pcard__bg--1"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <p class="pcard__title">2-к квартира</p>
+            <p class="pcard__desc">г. Стерлитамак<br>Декабрь 2024</p>
+          </div>
+        </div>
+
+        <div class="pcard" onclick="openProject(1)">
+          <div class="pcard__bg pcard__bg--2"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <span class="pcard__type">Флиппинг под перепродажу</span>
+            <p class="pcard__title">Студия</p>
+            <p class="pcard__desc">г. Уфа<br>Июнь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard" onclick="openProject(2)">
+          <div class="pcard__bg pcard__bg--3"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <span class="pcard__type">Долгосрочная аренда</span>
+            <p class="pcard__title">3-к квартира</p>
+            <p class="pcard__desc">г. Стерлитамак<br>Октябрь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard" onclick="openProject(3)">
+          <div class="pcard__bg pcard__bg--4"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <span class="pcard__type">Долгосрочная аренда</span>
+            <p class="pcard__title">2-к квартира</p>
+            <p class="pcard__desc">г. Москва<br>Январь 2026</p>
+          </div>
+        </div>
+
+        <div class="pcard" onclick="openProject(4)">
+          <div class="pcard__bg pcard__bg--5"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <span class="pcard__type">Перепродажа</span>
+            <p class="pcard__title">Ремонт под ключ</p>
+            <p class="pcard__desc">г. Темрюк<br>Ноябрь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard" onclick="openProject(5)">
+          <div class="pcard__bg pcard__bg--6"></div>
+          <div class="pcard__overlay"></div>
+          <div class="pcard__body">
+            <span class="pcard__type">Посуточная аренда</span>
+            <p class="pcard__title">Упаковка и хоумстейджинг</p>
+            <p class="pcard__desc">г. Краснодар<br>Январь 2026</p>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="portfolio__arrow portfolio__arrow--prev" id="pcPrev" aria-label="Назад">&#8592;</button>
+      <button class="portfolio__arrow portfolio__arrow--next" id="pcNext" aria-label="Вперёд">&#8594;</button>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       REVIEWS
+  ══════════════════════════════════════ -->
+  <section class="reviews section section--alt">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-eyebrow">Отзывы клиентов</p>
+        <h2 class="section-title">Что говорят<br /><em>о нас</em></h2>
+      </div>
+
+      <!-- Carousel: desktop -->
+      <div class="reviews__carousel-wrap">
+        <div class="reviews__carousel" id="reviewsCarousel">
+          <div class="review-slide"><img src="images/otziv1.jpeg" alt="Отзыв 1" /></div>
+          <div class="review-slide"><img src="images/otziv2.jpeg" alt="Отзыв 2" /></div>
+          <div class="review-slide"><img src="images/otziv3.jpeg" alt="Отзыв 3" /></div>
+          <div class="review-slide"><img src="images/otziv4.jpeg" alt="Отзыв 4" /></div>
+          <div class="review-slide"><img src="images/otziv5.jpeg" alt="Отзыв 5" /></div>
+        </div>
+        <button class="reviews__arrow reviews__arrow--prev" id="rvPrev" aria-label="Назад">&#8592;</button>
+        <button class="reviews__arrow reviews__arrow--next" id="rvNext" aria-label="Вперёд">&#8594;</button>
+      </div>
+
+      <!-- Static grid: mobile only -->
+      <div class="reviews__static">
+        <div class="reviews__static-item"><img src="images/otziv1.jpeg" alt="Отзыв 1" /></div>
+        <div class="reviews__static-item"><img src="images/otziv2.jpeg" alt="Отзыв 2" /></div>
+        <div class="reviews__static-item"><img src="images/otziv3.jpeg" alt="Отзыв 3" /></div>
+        <div class="reviews__static-item"><img src="images/otziv4.jpeg" alt="Отзыв 4" /></div>
+        <div class="reviews__static-item"><img src="images/otziv5.jpeg" alt="Отзыв 5" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       REQUEST FORM
+  ══════════════════════════════════════ -->
+  <section class="cta-section section" id="form">
+    <div class="container cta-section__inner">
+      <div class="cta-section__text">
+        <p class="section-eyebrow">Начните сейчас</p>
+        <h2 class="section-title">Обсудим ваш<br /><em>проект</em></h2>
+        <p class="cta-section__desc">
+          Оставьте заявку — в течение рабочего дня мы свяжемся, уточним детали и предложим индивидуальное решение
+        </p>
+        <div class="cta-section__trust">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Разберём вашу задачу
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Свяжемся с вами в ближайшее время
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+              <polyline points="22 4 12 14.01 9 11.01"/>
+            </svg>
+            Первый шаг — за нами
+          </div>
+        </div>
+      </div>
+      <form class="cta-form" onsubmit="handleFormSubmit(event)">
+        <input type="hidden" name="access_key" value="ca6b957c-e76b-49f7-a802-faa527224bdd">
+        <input type="checkbox" name="botcheck" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input class="form-input" type="text" name="name" placeholder="Как к вам обращаться" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input class="form-input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Интересующая услуга</label>
+          <select class="form-input form-select" name="service">
+            <option value="">Выберите направление</option>
+            <option>Подбор недвижимости</option>
+            <option>Ремонт под ключ</option>
+            <option>Флиппинг</option>
+            <option>Хоум-стейджинг</option>
+            <option>Управление арендой</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Комментарий</label>
+          <textarea class="form-input form-textarea" name="message" placeholder="Расскажите о вашем запросе..."></textarea>
+        </div>
+        <button class="btn btn--gold w-full btn--lg" type="submit" id="ctaSubmitBtn">Отправить заявку</button>
+        <p class="form-policy">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer class="footer" id="contacts">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="#" class="logo logo--light">ELENA HOME</a>
+        <p class="footer__tagline">Недвижимость, которая работает на вас</p>
+        <div class="footer__social">
+          <!-- VK -->
+          <a href="https://vk.com/id122271956" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="ВКонтакте">
+            <img src="images/logo/vk.png" alt="ВКонтакте" />
+          </a>
+          <!-- MAX -->
+          <a href="https://max.ru/join/JoOUrYsrq0CbgbwxHMmJU_1lPaedlfXe8Rya0g9m--E" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="MAX">
+            <img src="images/logo/max.png" alt="MAX" />
+          </a>
+          <!-- Позвонить -->
+          <a href="tel:+79279430910" class="social-link social-link--call" aria-label="Позвонить">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__nav-title">Услуги</h4>
+        <a href="#services" class="footer__nav-link">Подбор недвижимости</a>
+        <a href="#services" class="footer__nav-link">Ремонт под ключ</a>
+        <a href="#services" class="footer__nav-link">Флиппинг</a>
+        <a href="#services" class="footer__nav-link">Хоум-стейджинг</a>
+        <a href="#services" class="footer__nav-link">Управление арендой</a>
+      </div>
+
+      <div class="footer__nav">
+        <h4 class="footer__nav-title">Компания</h4>
+        <a href="#about" class="footer__nav-link">О нас</a>
+        <a href="#portfolio" class="footer__nav-link">Проекты</a>
+        <a href="#contacts" class="footer__nav-link">Контакты</a>
+      </div>
+
+      <div class="footer__contacts">
+        <h4 class="footer__nav-title">Контакты</h4>
+        <a href="tel:+79279430910" class="footer__contact-link">+7 (927) 943-09-10</a>
+        <a href="mailto:elena.khalilova2408@yandex.ru" class="footer__contact-link">elena.khalilova2408@yandex.ru</a>
+        <p class="footer__address">г. Краснодар, ул. Марины Цветаевой 2к2</p>
+        <p class="footer__hours">Пн–Вс: 10:00–19:00</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div class="container footer__bottom-inner">
+        <p>© 2026 Elena Home. Все права защищены.</p>
+        <a href="#">Политика конфиденциальности</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       MODAL
+  ══════════════════════════════════════ -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
+    <div class="modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <h3 class="modal__title">Заявка на консультацию</h3>
+      <p class="modal__subtitle">Оставьте контакты — свяжемся в течение 2 часов</p>
+      <form onsubmit="handleModalSubmit(event)">
+        <input type="hidden" name="access_key" value="ca6b957c-e76b-49f7-a802-faa527224bdd">
+        <input type="checkbox" name="botcheck" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">Ваше имя</label>
+          <input class="form-input" type="text" name="name" placeholder="Имя" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input class="form-input" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Комментарий</label>
+          <textarea class="form-input form-textarea form-textarea--sm" name="message" placeholder="Кратко опишите запрос..."></textarea>
+        </div>
+        <button class="btn btn--gold w-full btn--lg" type="submit" id="modalSubmitBtn">Заказать звонок</button>
+        <p class="form-policy">Нажимая кнопку, вы соглашаетесь с <a href="#">политикой конфиденциальности</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast">
+    <svg class="toast__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <span class="toast__text"></span>
+  </div>
+
+  <!-- Project gallery modal -->
+  <div class="proj-overlay" id="projModal" onclick="closeProjModal()">
+    <div class="proj-modal" onclick="event.stopPropagation()">
+      <button class="modal__close" onclick="closeProjModal()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="proj-modal__gallery">
+        <div class="proj-gallery__track" id="projGalleryTrack"></div>
+        <button class="proj-gallery__arrow proj-gallery__arrow--prev" id="pgPrev">&#8592;</button>
+        <button class="proj-gallery__arrow proj-gallery__arrow--next" id="pgNext">&#8594;</button>
+        <div class="proj-gallery__counter" id="pgCounter"></div>
+      </div>
+      <div class="proj-modal__info">
+        <span class="pcard__type" id="projModalType"></span>
+        <h3 class="proj-modal__title" id="projModalTitle"></h3>
+        <p class="proj-modal__desc" id="projModalDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
