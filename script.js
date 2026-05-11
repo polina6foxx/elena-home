@@ -38,11 +38,18 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Close on Escape
+// Close on Escape / navigate gallery with arrow keys
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeModal();
     closeProjModal();
+  }
+  if (projModalEl.classList.contains('open')) {
+    if (e.key === 'ArrowLeft') {
+      if (pgCurrent > 0) { pgCurrent--; updateProjGallery(true); }
+    } else if (e.key === 'ArrowRight') {
+      if (pgCurrent < pgImages.length - 1) { pgCurrent++; updateProjGallery(true); }
+    }
   }
 });
 
@@ -138,7 +145,7 @@ async function handleModalSubmit(e) {
 // ── Project gallery modal ─────────────────────
 const projectsData = [
   {
-    type: '',
+    type: 'Подготовка квартиры под сдачу',
     title: '2-к квартира',
     desc: 'г. Стерлитамак · Декабрь 2024',
     images: ['images/proekt/1/front.jpg','images/proekt/1/two.jpg','images/proekt/1/three.jpg','images/proekt/1/four.jpg']
@@ -237,6 +244,36 @@ pgNextBtn.addEventListener('click', () => {
   if (pgCurrent < pgImages.length - 1) { pgCurrent++; updateProjGallery(true); }
 });
 
+// Mouse drag in project gallery
+(function () {
+  const galleryWrap = projGalleryTrack.parentElement;
+  let dragStartX = 0;
+  let dragging = false;
+
+  galleryWrap.style.cursor = 'grab';
+
+  galleryWrap.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    dragStartX = e.clientX;
+    dragging = true;
+    galleryWrap.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mouseup', (e) => {
+    if (!dragging) return;
+    dragging = false;
+    galleryWrap.style.cursor = 'grab';
+    const delta = e.clientX - dragStartX;
+    if (delta < -50 && pgCurrent < pgImages.length - 1) { pgCurrent++; updateProjGallery(true); }
+    else if (delta > 50 && pgCurrent > 0) { pgCurrent--; updateProjGallery(true); }
+  });
+
+  document.addEventListener('mouseleave', () => {
+    if (dragging) { dragging = false; galleryWrap.style.cursor = 'grab'; }
+  });
+})();
+
 window.addEventListener('resize', () => {
   if (!projModalEl.classList.contains('open')) return;
   const w = projGalleryTrack.parentElement.offsetWidth;
@@ -247,71 +284,67 @@ window.addEventListener('resize', () => {
 });
 
 
-// ── Generic drag carousel factory ────────────
-function makeCarousel({ trackId, prevId, nextId, dotsId, visibleCount, autoMs, mobileSwipe = true }) {
-  const track  = document.getElementById(trackId);
+// ── Generic carousel factory (infinite loop) ──
+function makeCarousel({ trackId, prevId, nextId, dotsId, visibleCount, autoMs }) {
+  const track = document.getElementById(trackId);
   if (!track) return;
-  const slides  = Array.from(track.children);
-  const total   = slides.length;
-  let current   = 0;
-  let startX    = 0;
-  let isDragging = false;
-  let dragDelta  = 0;
-  let autoTimer  = null;
+  const origSlides = Array.from(track.children);
+  const total = origSlides.length;
+  if (total === 0) return;
 
-  function cardW() { return slides[0] ? slides[0].getBoundingClientRect().width : track.parentElement.offsetWidth / visibleCount; }
+  // Clone all slides to both ends for seamless infinite wrapping
+  origSlides.forEach(s => track.appendChild(s.cloneNode(true)));
+  origSlides.forEach(s => track.insertBefore(s.cloneNode(true), track.firstChild));
+  // Layout: [clones 0..total-1] [real 0..total-1] [clones 0..total-1]
 
-  function getMaxPos() {
-    const w = cardW();
-    const trackW = track.parentElement.offsetWidth;
-    const visible = w > 0 ? Math.round(trackW / w) : visibleCount;
-    return Math.max(0, total - visible);
+  const offset = total; // index of first real slide
+  let current = offset;
+  let autoTimer = null;
+
+  function cardW() {
+    const slides = Array.from(track.children);
+    return slides[0] ? slides[0].getBoundingClientRect().width : track.parentElement.offsetWidth / visibleCount;
   }
 
   function render(animate) {
     track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.4,0,0.2,1)' : 'none';
-    track.style.transform  = `translateX(${-current * cardW()}px)`;
-    if (dotsId) {
-      document.querySelectorAll(`#${dotsId} .reviews__dot`).forEach((d, i) => {
-        d.classList.toggle('reviews__dot--active', i === current);
-      });
+    track.style.transform = `translateX(${-current * cardW()}px)`;
+  }
+
+  // After animation: silently jump from clone zone back to real zone
+  track.addEventListener('transitionend', (e) => {
+    if (e.propertyName !== 'transform') return;
+    track.style.transition = 'none';
+    if (current >= offset + total) {
+      current -= total;
+      track.style.transform = `translateX(${-current * cardW()}px)`;
+    } else if (current < offset) {
+      current += total;
+      track.style.transform = `translateX(${-current * cardW()}px)`;
     }
-  }
+  });
 
-  function goTo(n) {
-    const maxPos = getMaxPos();
-    if (n < 0) current = maxPos;
-    else if (n > maxPos) current = 0;
-    else current = n;
-    render(true);
-  }
-
-  // Arrows (optional)
-  if (prevId) { const el = document.getElementById(prevId); if (el) el.addEventListener('click', () => { goTo(current - 1); resetAuto(); }); }
-  if (nextId) { const el = document.getElementById(nextId); if (el) el.addEventListener('click', () => { goTo(current + 1); resetAuto(); }); }
-
-  // Dots
-  if (dotsId) {
-    const dotsEl = document.getElementById(dotsId);
-    slides.forEach((_, i) => {
-      if (i > total - visibleCount) return;
-      const btn = document.createElement('button');
-      btn.className = 'reviews__dot' + (i === 0 ? ' reviews__dot--active' : '');
-      btn.dataset.index = i;
-      btn.addEventListener('click', () => { goTo(i); resetAuto(); });
-      dotsEl.appendChild(btn);
-    });
-  }
-
-  // Drag / swipe — disabled, navigation by arrows only
-  track.style.cursor = 'default';
-
-  // Auto-play
   function resetAuto() {
     if (!autoMs) return;
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1 > getMaxPos() ? 0 : current + 1), autoMs);
+    autoTimer = setInterval(() => { current++; render(true); }, autoMs);
   }
+
+  if (prevId) { const el = document.getElementById(prevId); if (el) el.addEventListener('click', () => { current--; render(true); resetAuto(); }); }
+  if (nextId) { const el = document.getElementById(nextId); if (el) el.addEventListener('click', () => { current++; render(true); resetAuto(); }); }
+
+  if (dotsId) {
+    const dotsEl = document.getElementById(dotsId);
+    for (let i = 0; i < total; i++) {
+      const btn = document.createElement('button');
+      btn.className = 'reviews__dot' + (i === 0 ? ' reviews__dot--active' : '');
+      btn.dataset.index = i;
+      btn.addEventListener('click', () => { current = offset + i; render(true); resetAuto(); });
+      dotsEl.appendChild(btn);
+    }
+  }
+
+  track.style.cursor = 'default';
   resetAuto();
   window.addEventListener('resize', () => render(false));
 }

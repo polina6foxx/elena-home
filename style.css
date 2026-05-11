@@ -695,12 +695,12 @@ input, textarea, select { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--gold);
-  background: rgba(0,0,0,0.4);
-  padding: 4px 10px;
-  border-radius: 100px;
+  color: var(--graphite);
+  background: none;
+  padding: 0;
   margin-bottom: 14px;
   align-self: flex-start;
+  text-shadow: none;
 }
 .pcard__rows { display: flex; flex-direction: column; gap: 4px; }
 .pcard__title {
