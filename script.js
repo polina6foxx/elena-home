@@ -141,7 +141,7 @@ const projectsData = [
     type: '',
     title: '2-к квартира',
     desc: 'г. Стерлитамак · Декабрь 2024',
-    images: ['images/proekt/1/front.jpg','images/proekt/1/two.jpg','images/proekt/1/three.jpg','images/proekt/1/four.jpg','images/proekt/1/five.jpg']
+    images: ['images/proekt/1/front.jpg','images/proekt/1/two.jpg','images/proekt/1/three.jpg','images/proekt/1/four.jpg']
   },
   {
     type: 'Флиппинг под перепродажу',
@@ -261,6 +261,13 @@ function makeCarousel({ trackId, prevId, nextId, dotsId, visibleCount, autoMs, m
 
   function cardW() { return slides[0] ? slides[0].getBoundingClientRect().width : track.parentElement.offsetWidth / visibleCount; }
 
+  function getMaxPos() {
+    const w = cardW();
+    const trackW = track.parentElement.offsetWidth;
+    const visible = w > 0 ? Math.round(trackW / w) : visibleCount;
+    return Math.max(0, total - visible);
+  }
+
   function render(animate) {
     track.style.transition = animate ? 'transform 0.55s cubic-bezier(0.4,0,0.2,1)' : 'none';
     track.style.transform  = `translateX(${-current * cardW()}px)`;
@@ -272,7 +279,7 @@ function makeCarousel({ trackId, prevId, nextId, dotsId, visibleCount, autoMs, m
   }
 
   function goTo(n) {
-    const maxPos = total - visibleCount;
+    const maxPos = getMaxPos();
     if (n < 0) current = maxPos;
     else if (n > maxPos) current = 0;
     else current = n;
@@ -296,33 +303,14 @@ function makeCarousel({ trackId, prevId, nextId, dotsId, visibleCount, autoMs, m
     });
   }
 
-  // Drag / swipe
-  function onStart(x) {
-    if (!mobileSwipe && window.innerWidth <= 768) return;
-    isDragging = true; startX = x; dragDelta = 0; track.classList.add('is-dragging');
-  }
-  function onMove(x)  { if (!isDragging) return; dragDelta = x - startX; track.style.transition = 'none'; track.style.transform = `translateX(${-current * cardW() + dragDelta}px)`; }
-  function onEnd()    {
-    if (!isDragging) return;
-    isDragging = false;
-    track.classList.remove('is-dragging');
-    if (dragDelta < -60)      goTo(current + 1);
-    else if (dragDelta > 60)  goTo(current - 1);
-    else                      render(true);
-    resetAuto();
-  }
-  track.addEventListener('mousedown',  e => onStart(e.clientX));
-  window.addEventListener('mousemove', e => onMove(e.clientX));
-  window.addEventListener('mouseup',   () => onEnd());
-  track.addEventListener('touchstart', e => onStart(e.touches[0].clientX), { passive: true });
-  track.addEventListener('touchmove',  e => onMove(e.touches[0].clientX),  { passive: true });
-  track.addEventListener('touchend',   () => onEnd());
+  // Drag / swipe — disabled, navigation by arrows only
+  track.style.cursor = 'default';
 
   // Auto-play
   function resetAuto() {
     if (!autoMs) return;
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => goTo(current + 1 > total - visibleCount ? 0 : current + 1), autoMs);
+    autoTimer = setInterval(() => goTo(current + 1 > getMaxPos() ? 0 : current + 1), autoMs);
   }
   resetAuto();
   window.addEventListener('resize', () => render(false));
@@ -336,7 +324,7 @@ makeCarousel({
   dotsId:       null,
   visibleCount: 3,
   autoMs:       0,
-  mobileSwipe:  false
+  mobileSwipe:  true
 });
 
 // ── Reviews carousel ─────────────────────────

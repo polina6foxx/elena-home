@@ -271,6 +271,15 @@ input, textarea, select { font-family: inherit; }
   position: relative;
   z-index: 2;
 }
+.hero__brand {
+  font-size: clamp(36px, 6vw, 80px);
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  line-height: 1;
+}
 .hero__title {
   font-family: var(--font-sans);
   font-size: clamp(26px, 3.8vw, 46px);
@@ -644,12 +653,10 @@ input, textarea, select { font-family: inherit; }
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: filter 0.55s ease, transform 0.55s ease;
-  filter: saturate(0.25) brightness(0.65);
+  transition: transform 0.55s ease;
   transform: scale(1.04);
 }
 .pcard:hover .pcard__bg {
-  filter: saturate(1) brightness(1);
   transform: scale(1);
 }
 .pcard__bg--1 { background-image: url('images/proekt/1/front.jpg'); }
@@ -715,9 +722,8 @@ input, textarea, select { font-family: inherit; }
   transform: translateY(-50%);
   width: 48px; height: 48px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.12);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.2);
+  background: var(--gold);
+  border: none;
   color: #fff;
   font-size: 18px;
   display: flex;
@@ -726,16 +732,20 @@ input, textarea, select { font-family: inherit; }
   cursor: pointer;
   transition: background var(--transition), transform var(--transition);
   z-index: 10;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
 }
-.portfolio__arrow:hover { background: var(--gold); transform: translateY(-50%) scale(1.08); }
+.portfolio__arrow:hover { background: var(--gold-hover); transform: translateY(-50%) scale(1.08); }
 .portfolio__arrow--prev { left: 20px; }
 .portfolio__arrow--next { right: 20px; }
 
 /* ══════════════════════════════════════════════
    REVIEWS CAROUSEL
    ══════════════════════════════════════════════ */
-.reviews__carousel-wrap {
+.reviews__slider {
   position: relative;
+  padding: 0 36px;
+}
+.reviews__carousel-wrap {
   overflow: hidden;
 }
 .reviews__carousel {
@@ -784,8 +794,8 @@ input, textarea, select { font-family: inherit; }
   z-index: 10;
 }
 .reviews__arrow:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
-.reviews__arrow--prev { left: -22px; }
-.reviews__arrow--next { right: -22px; }
+.reviews__arrow--prev { left: 0; }
+.reviews__arrow--next { right: 0; }
 
 /* Static grid — hidden on desktop, visible on mobile */
 .reviews__static { display: none; }
@@ -1227,13 +1237,23 @@ input, textarea, select { font-family: inherit; }
   .approach__desc--lead { font-size: 16px; }
 
   /* Portfolio carousel */
-  .pcard { flex: 0 0 82%; }
+  .pcard { flex: 0 0 88%; }
   .pcard__body { padding: 20px 18px; }
-  .portfolio__arrow--prev { left: 8px; width: 44px; height: 44px; }
-  .portfolio__arrow--next { right: 8px; width: 44px; height: 44px; }
+  .portfolio__arrow {
+    width: 48px; height: 48px;
+    background: var(--gold);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    font-size: 20px;
+  }
+  .portfolio__arrow--prev { left: 8px; }
+  .portfolio__arrow--next { right: 8px; }
+
+  /* Hero brand mobile */
+  .hero__brand { font-size: clamp(28px, 9vw, 48px); letter-spacing: 0.14em; margin-bottom: 12px; }
 
   /* Reviews: hide carousel, show static grid */
   .reviews__carousel-wrap { display: none; }
+  .reviews__arrow { display: none; }
   .reviews__static {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1268,7 +1288,8 @@ input, textarea, select { font-family: inherit; }
   .section { padding: 52px 0; }
   .section-title { font-size: clamp(22px, 8vw, 32px); }
 
-  .hero__title { font-size: clamp(22px, 9vw, 30px); }
+  .hero__brand { font-size: clamp(24px, 10vw, 36px); letter-spacing: 0.12em; }
+  .hero__title { font-size: clamp(20px, 8vw, 28px); }
   .hero__subtitle { font-size: 14px; }
   .hero__slides { aspect-ratio: 1 / 1; }
 
