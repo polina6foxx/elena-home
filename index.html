@@ -57,6 +57,10 @@
        HERO
   ══════════════════════════════════════ -->
   <section class="hero">
+
+    <!-- Aurora background effect -->
+    <div class="hero__aurora" aria-hidden="true"></div>
+
     <div class="container hero__split">
 
       <div class="hero__left">
@@ -270,67 +274,120 @@
       <h2 class="section-title">Реализованные<br /><em>проекты</em></h2>
     </div>
 
-    <div class="portfolio__carousel-wrap">
-      <div class="portfolio__carousel" id="portfolioCarousel">
+    <div class="portfolio-auto">
+      <div class="portfolio-auto__track">
 
-        <div class="pcard" onclick="openProject(0)">
-          <div class="pcard__bg pcard__bg--1"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">2-к квартира</p>
-            <p class="pcard__desc">г. Стерлитамак<br>Декабрь 2024</p>
+        <!-- Set 1 -->
+        <div class="pcard-auto" onclick="openProject(0)">
+          <img class="pcard-auto__img" src="images/proekt/1/front.jpg" alt="2-к квартира, Стерлитамак" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">2-к квартира</p>
+            <p class="pcard-auto__desc">г. Стерлитамак · Декабрь 2024</p>
           </div>
         </div>
 
-        <div class="pcard" onclick="openProject(1)">
-          <div class="pcard__bg pcard__bg--2"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">Студия</p>
-            <p class="pcard__desc">г. Уфа<br>Июнь 2025</p>
+        <div class="pcard-auto" onclick="openProject(1)">
+          <img class="pcard-auto__img" src="images/proekt/2/front.jpg" alt="Студия, Уфа" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Студия</p>
+            <p class="pcard-auto__desc">г. Уфа · Июнь 2025</p>
           </div>
         </div>
 
-        <div class="pcard" onclick="openProject(2)">
-          <div class="pcard__bg pcard__bg--3"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">3-к квартира</p>
-            <p class="pcard__desc">г. Стерлитамак<br>Октябрь 2025</p>
+        <div class="pcard-auto" onclick="openProject(2)">
+          <img class="pcard-auto__img" src="images/proekt/3/front.jpg" alt="3-к квартира, Стерлитамак" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">3-к квартира</p>
+            <p class="pcard-auto__desc">г. Стерлитамак · Октябрь 2025</p>
           </div>
         </div>
 
-        <div class="pcard" onclick="openProject(3)">
-          <div class="pcard__bg pcard__bg--4"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">2-к квартира</p>
-            <p class="pcard__desc">г. Москва<br>Январь 2026</p>
+        <div class="pcard-auto" onclick="openProject(3)">
+          <img class="pcard-auto__img" src="images/proekt/4/front.jpg" alt="2-к квартира, Москва" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">2-к квартира</p>
+            <p class="pcard-auto__desc">г. Москва · Январь 2026</p>
           </div>
         </div>
 
-        <div class="pcard" onclick="openProject(4)">
-          <div class="pcard__bg pcard__bg--5"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">Ремонт под ключ</p>
-            <p class="pcard__desc">г. Темрюк<br>Ноябрь 2025</p>
+        <div class="pcard-auto" onclick="openProject(4)">
+          <img class="pcard-auto__img" src="images/proekt/5/front.jpg" alt="Ремонт под ключ, Темрюк" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Ремонт под ключ</p>
+            <p class="pcard-auto__desc">г. Темрюк · Ноябрь 2025</p>
           </div>
         </div>
 
-        <div class="pcard" onclick="openProject(5)">
-          <div class="pcard__bg pcard__bg--6"></div>
-          <div class="pcard__overlay"></div>
-          <div class="pcard__body">
-            <p class="pcard__title">Упаковка и хоумстейджинг</p>
-            <p class="pcard__desc">г. Краснодар<br>Январь 2026</p>
+        <div class="pcard-auto" onclick="openProject(5)">
+          <img class="pcard-auto__img" src="images/proekt/6/front.jpg" alt="Хоумстейджинг, Краснодар" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Упаковка и хоумстейджинг</p>
+            <p class="pcard-auto__desc">г. Краснодар · Январь 2026</p>
+          </div>
+        </div>
+
+        <!-- Set 2 — duplicate for seamless loop -->
+        <div class="pcard-auto" onclick="openProject(0)">
+          <img class="pcard-auto__img" src="images/proekt/1/front.jpg" alt="2-к квартира, Стерлитамак" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">2-к квартира</p>
+            <p class="pcard-auto__desc">г. Стерлитамак · Декабрь 2024</p>
+          </div>
+        </div>
+
+        <div class="pcard-auto" onclick="openProject(1)">
+          <img class="pcard-auto__img" src="images/proekt/2/front.jpg" alt="Студия, Уфа" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Студия</p>
+            <p class="pcard-auto__desc">г. Уфа · Июнь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard-auto" onclick="openProject(2)">
+          <img class="pcard-auto__img" src="images/proekt/3/front.jpg" alt="3-к квартира, Стерлитамак" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">3-к квартира</p>
+            <p class="pcard-auto__desc">г. Стерлитамак · Октябрь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard-auto" onclick="openProject(3)">
+          <img class="pcard-auto__img" src="images/proekt/4/front.jpg" alt="2-к квартира, Москва" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">2-к квартира</p>
+            <p class="pcard-auto__desc">г. Москва · Январь 2026</p>
+          </div>
+        </div>
+
+        <div class="pcard-auto" onclick="openProject(4)">
+          <img class="pcard-auto__img" src="images/proekt/5/front.jpg" alt="Ремонт под ключ, Темрюк" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Ремонт под ключ</p>
+            <p class="pcard-auto__desc">г. Темрюк · Ноябрь 2025</p>
+          </div>
+        </div>
+
+        <div class="pcard-auto" onclick="openProject(5)">
+          <img class="pcard-auto__img" src="images/proekt/6/front.jpg" alt="Хоумстейджинг, Краснодар" loading="lazy" />
+          <div class="pcard-auto__overlay"></div>
+          <div class="pcard-auto__body">
+            <p class="pcard-auto__title">Упаковка и хоумстейджинг</p>
+            <p class="pcard-auto__desc">г. Краснодар · Январь 2026</p>
           </div>
         </div>
 
       </div>
-
-      <button class="portfolio__arrow portfolio__arrow--prev" id="pcPrev" aria-label="Назад">&#8592;</button>
-      <button class="portfolio__arrow portfolio__arrow--next" id="pcNext" aria-label="Вперёд">&#8594;</button>
     </div>
   </section>
 

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>География вин — Алмаре</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">АЛМАРЕ</div>
+      <h1>География вин</h1>
+      <div class="search-wrap">
+        <input type="text" id="searchInput" placeholder="Поиск по названию, сорту, региону...">
+        <div id="searchResults" class="search-results"></div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="map-nav">
+    <button class="map-btn active" data-map="russia">🇷🇺 Россия</button>
+    <button class="map-btn" data-map="italy">🇮🇹 Италия</button>
+    <button class="map-btn" data-map="france">🇫🇷 Европа</button>
+  </nav>
+
+  <main>
+    <div class="map-container">
+
+      <!-- RUSSIA MAP -->
+      <div class="map-view active" id="map-russia">
+        <div class="map-title">Винные регионы России</div>
+        <div class="map-layout">
+          <div class="svg-wrap">
+            <svg viewBox="0 0 700 500" class="wine-map" id="svg-russia">
+
+              <!-- Background -->
+              <rect width="700" height="500" fill="#e8f4f8"/>
+
+              <!-- Sea labels -->
+              <text x="80" y="420" class="sea-label">Чёрное море</text>
+              <text x="520" y="440" class="sea-label">Каспийское море</text>
+
+              <!-- Kuban / Krasnodar region outline -->
+              <g class="region-group" data-region="anapa" title="Кубань, Анапа">
+                <polygon points="140,180 200,160 230,170 220,220 170,230 130,210" fill="#c8e6c9" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="175" y="200" class="region-label">Анапа</text>
+              </g>
+
+              <g class="region-group" data-region="krymsk" title="Кубань, Крымск">
+                <polygon points="220,170 280,155 310,175 300,220 240,230 220,220" fill="#c8e6c9" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="260" y="198" class="region-label">Крымск</text>
+              </g>
+
+              <g class="region-group" data-region="novorossiysk" title="Кубань, Новороссийск">
+                <polygon points="230,230 300,220 310,260 270,280 220,265" fill="#c8e6c9" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="255" y="255" class="region-label small">Новороссийск</text>
+              </g>
+
+              <g class="region-group" data-region="gelendzhik" title="Кубань, Геленджик">
+                <polygon points="270,280 310,260 330,290 300,320 260,310" fill="#c8e6c9" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="282" y="300" class="region-label small">Геленджик</text>
+              </g>
+
+              <g class="region-group" data-region="taman" title="Кубань, Тамань">
+                <polygon points="100,220 140,210 170,230 160,270 110,270 80,245" fill="#c8e6c9" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="120" y="248" class="region-label">Тамань</text>
+              </g>
+
+              <!-- Crimea -->
+              <g class="region-group" data-region="crimea" title="Крым, Севастополь">
+                <polygon points="170,340 250,320 300,340 290,390 230,410 160,390 150,365" fill="#fff9c4" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="220" y="368" class="region-label">Крым</text>
+                <text x="220" y="384" class="region-label small">(Севастополь)</text>
+              </g>
+
+              <!-- Alania / North Ossetia -->
+              <g class="region-group" data-region="alania" title="Алания">
+                <polygon points="460,220 510,210 540,230 530,270 480,275 450,255" fill="#ffe0b2" stroke="#fff" stroke-width="2" class="region"/>
+                <text x="488" y="248" class="region-label">Алания</text>
+              </g>
+
+              <!-- Compass -->
+              <g transform="translate(630,40)">
+                <circle r="20" fill="white" fill-opacity="0.7"/>
+                <text x="-4" y="-6" font-size="10" fill="#555">С</text>
+                <line x1="0" y1="-16" x2="0" y2="16" stroke="#888" stroke-width="1"/>
+                <line x1="-16" y1="0" x2="16" y2="0" stroke="#888" stroke-width="1"/>
+              </g>
+
+              <!-- Scale -->
+              <g transform="translate(30,470)">
+                <line x1="0" y1="0" x2="100" y2="0" stroke="#777" stroke-width="2"/>
+                <line x1="0" y1="-4" x2="0" y2="4" stroke="#777" stroke-width="2"/>
+                <line x1="100" y1="-4" x2="100" y2="4" stroke="#777" stroke-width="2"/>
+                <text x="35" y="15" font-size="10" fill="#777">≈ 200 км</text>
+              </g>
+
+            </svg>
+          </div>
+          <div class="wine-panel" id="panel-russia">
+            <div class="panel-hint">← Нажмите на регион, чтобы увидеть вина</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ITALY MAP -->
+      <div class="map-view" id="map-italy">
+        <div class="map-title">Винные регионы Италии</div>
+        <div class="map-layout">
+          <div class="svg-wrap">
+            <svg viewBox="0 0 420 680" class="wine-map" id="svg-italy">
+              <rect width="420" height="680" fill="#ddeeff"/>
+
+              <!-- Val d'Aosta -->
+              <g class="region-group" data-region="valdaosta" title="Валь д'Аоста">
+                <polygon points="80,60 110,55 120,75 100,90 75,80" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="90" y="76" class="region-label tiny">Валь д'Аоста</text>
+              </g>
+
+              <!-- Piedmont -->
+              <g class="region-group" data-region="piedmont" title="Пьемонт">
+                <polygon points="60,80 130,70 155,100 145,150 100,165 55,140 45,110" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="95" y="122" class="region-label">Пьемонт</text>
+              </g>
+
+              <!-- Lombardy -->
+              <g class="region-group" data-region="lombardy" title="Ломбардия">
+                <polygon points="145,70 220,65 240,95 225,130 165,140 145,115 140,90" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="183" y="103" class="region-label">Ломбардия</text>
+              </g>
+
+              <!-- Trentino-Alto Adige -->
+              <g class="region-group" data-region="trentino" title="Трентино-Альто Адидже">
+                <polygon points="220,55 270,50 280,80 260,105 230,100 215,80" fill="#b2dfdb" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="240" y="78" class="region-label tiny">Трентино</text>
+              </g>
+
+              <!-- Friuli -->
+              <g class="region-group" data-region="friuli" title="Фриули">
+                <polygon points="275,60 330,58 345,85 320,105 285,100 270,80" fill="#b2dfdb" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="300" y="84" class="region-label tiny">Фриули</text>
+              </g>
+
+              <!-- Veneto -->
+              <g class="region-group" data-region="veneto" title="Венето">
+                <polygon points="225,100 285,95 320,115 300,150 245,155 220,135" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="263" y="130" class="region-label">Венето</text>
+              </g>
+
+              <!-- Emilia-Romagna (separator region) -->
+              <g>
+                <polygon points="110,155 225,145 255,170 230,205 160,215 105,190" fill="#e0e0e0" stroke="#fff" stroke-width="1.5"/>
+                <text x="165" y="183" class="region-label tiny" fill="#999">Эмилия</text>
+              </g>
+
+              <!-- Tuscany -->
+              <g class="region-group" data-region="tuscany" title="Тоскана">
+                <polygon points="100,210 230,200 245,240 220,290 175,310 115,295 90,260 95,230" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="163" y="258" class="region-label">Тоскана</text>
+              </g>
+
+              <!-- Umbria -->
+              <g class="region-group" data-region="umbria" title="Умбрия">
+                <polygon points="200,290 245,285 255,320 235,350 195,355 185,325" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="213" y="323" class="region-label tiny">Умбрия</text>
+              </g>
+
+              <!-- Campania -->
+              <g class="region-group" data-region="campania" title="Кампания">
+                <polygon points="225,390 275,380 295,415 275,450 235,455 210,420" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="245" y="420" class="region-label tiny">Кампания</text>
+              </g>
+
+              <!-- Abruzzo -->
+              <g class="region-group" data-region="abruzzo" title="Абруццо">
+                <polygon points="245,330 295,320 310,355 285,385 250,385 235,355" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="262" y="358" class="region-label tiny">Абруццо</text>
+              </g>
+
+              <!-- Sicily -->
+              <g class="region-group" data-region="sicily" title="Сицилия">
+                <polygon points="120,580 230,565 260,590 240,620 170,625 110,610" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="178" y="598" class="region-label">Сицилия</text>
+              </g>
+
+              <!-- Sardinia -->
+              <g class="region-group" data-region="sardinia" title="Сардиния">
+                <polygon points="30,430 80,420 95,460 80,510 40,515 20,475" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="48" y="470" class="region-label tiny">Сардиния</text>
+              </g>
+
+              <!-- Sea labels -->
+              <text x="340" y="300" class="sea-label" transform="rotate(-70,340,300)">Адриатическое море</text>
+              <text x="20" y="330" class="sea-label" transform="rotate(70,20,330)">Тирренское море</text>
+
+            </svg>
+          </div>
+          <div class="wine-panel" id="panel-italy">
+            <div class="panel-hint">← Нажмите на регион, чтобы увидеть вина</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EUROPE MAP (France, Germany, Austria) -->
+      <div class="map-view" id="map-france">
+        <div class="map-title">Вина Европы: Франция, Германия, Австрия</div>
+        <div class="map-layout">
+          <div class="svg-wrap">
+            <svg viewBox="0 0 700 520" class="wine-map" id="svg-france">
+              <rect width="700" height="520" fill="#ddeeff"/>
+
+              <!-- FRANCE -->
+              <text x="180" y="30" class="country-label">ФРАНЦИЯ</text>
+
+              <!-- Alsace -->
+              <g class="region-group" data-region="alsace" title="Эльзас">
+                <polygon points="295,60 320,58 325,95 305,105 288,88" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="298" y="83" class="region-label tiny">Эльзас</text>
+              </g>
+
+              <!-- Burgundy -->
+              <g class="region-group" data-region="burgundy" title="Бургундия">
+                <polygon points="240,95 295,90 305,140 280,180 235,175 215,140 220,105" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="255" y="138" class="region-label">Бургундия</text>
+              </g>
+
+              <!-- Chablis (part of Burgundy but separate label) -->
+              <g class="region-group" data-region="chablis" title="Шабли">
+                <polygon points="225,65 265,62 278,92 250,98 222,90" fill="#b2dfdb" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="238" y="82" class="region-label tiny">Шабли</text>
+              </g>
+
+              <!-- Beaujolais -->
+              <g class="region-group" data-region="beaujolais" title="Божоле">
+                <polygon points="230,178 278,175 285,210 255,225 225,215" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="241" y="202" class="region-label tiny">Божоле</text>
+              </g>
+
+              <!-- Rhone Valley -->
+              <g class="region-group" data-region="rhone" title="Долина Роны">
+                <polygon points="235,220 285,215 295,265 270,295 230,290 215,255" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="243" y="258" class="region-label tiny">Долина Роны</text>
+              </g>
+
+              <!-- Provence -->
+              <g class="region-group" data-region="provence" title="Прованс">
+                <polygon points="240,295 295,285 330,310 315,345 265,350 235,325" fill="#c8e6c9" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="265" y="320" class="region-label tiny">Прованс</text>
+              </g>
+
+              <!-- Loire Valley -->
+              <g class="region-group" data-region="loire" title="Долина Луары">
+                <polygon points="100,110 210,100 225,135 195,165 120,170 90,145" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="150" y="138" class="region-label">Долина Луары</text>
+              </g>
+
+              <!-- Bordeaux -->
+              <g class="region-group" data-region="bordeaux" title="Бордо">
+                <polygon points="90,210 165,200 180,250 155,285 90,280 70,250" fill="#a5d6a7" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="115" y="248" class="region-label">Бордо</text>
+              </g>
+
+              <!-- GERMANY -->
+              <text x="400" y="30" class="country-label">ГЕРМАНИЯ</text>
+
+              <!-- Mosel -->
+              <g class="region-group" data-region="mosel" title="Мозель">
+                <polygon points="340,80 390,75 400,115 375,130 340,120" fill="#fff9c4" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="360" y="103" class="region-label tiny">Мозель</text>
+              </g>
+
+              <!-- Rheingau -->
+              <g class="region-group" data-region="rheingau" title="Рейнгау">
+                <polygon points="390,100 430,95 440,125 415,140 385,135" fill="#fff9c4" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="398" y="120" class="region-label tiny">Рейнгау</text>
+              </g>
+
+              <!-- Rheinhessen -->
+              <g class="region-group" data-region="rheinhessen" title="Рейнгессен">
+                <polygon points="385,140 435,135 450,170 420,185 385,178" fill="#fff9c4" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="398" y="162" class="region-label tiny">Рейнгессен</text>
+              </g>
+
+              <!-- AUSTRIA -->
+              <text x="490" y="180" class="country-label">АВСТРИЯ</text>
+
+              <!-- Wachau -->
+              <g class="region-group" data-region="wachau" title="Вахау">
+                <polygon points="480,205 540,200 555,230 530,250 480,248" fill="#ffe0b2" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="500" y="228" class="region-label tiny">Вахау</text>
+              </g>
+
+              <!-- Lower Austria -->
+              <g class="region-group" data-region="loweraustria" title="Нижняя Австрия">
+                <polygon points="540,195 610,190 625,225 600,250 550,255 530,230" fill="#ffe0b2" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="562" y="225" class="region-label tiny">Нижняя Австрия</text>
+              </g>
+
+              <!-- Burgenland (Austria) -->
+              <g class="region-group" data-region="burgenland" title="Бургенланд">
+                <polygon points="590,250 635,245 645,285 620,300 585,295" fill="#ffe0b2" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="597" y="274" class="region-label tiny">Бургенланд</text>
+              </g>
+
+              <!-- PORTUGAL -->
+              <text x="30" y="320" class="country-label">ПОРТУГАЛИЯ</text>
+              <g class="region-group" data-region="portugal" title="Португалия (Порто)">
+                <polygon points="20,340 75,335 80,375 55,390 20,380" fill="#f8bbd0" stroke="#fff" stroke-width="1.5" class="region"/>
+                <text x="32" y="363" class="region-label tiny">Порто</text>
+              </g>
+
+            </svg>
+          </div>
+          <div class="wine-panel" id="panel-france">
+            <div class="panel-hint">← Нажмите на регион, чтобы увидеть вина</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Wine detail modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal">
+      <button class="modal-close" id="modalClose">×</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="wines.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
