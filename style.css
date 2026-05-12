@@ -695,7 +695,7 @@ input, textarea, select { font-family: inherit; }
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--graphite);
+  color: #000;
   background: none;
   padding: 0;
   margin-bottom: 14px;
